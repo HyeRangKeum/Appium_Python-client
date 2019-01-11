@@ -17,7 +17,7 @@ class Todo(unittest.TestCase):
         desired_caps['platformVersion'] = '8.0'
         desired_caps['deviceName'] = 'test'
         # Returns abs path relative to this file and not cwd
-        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__),'/Users/password_specup/Desktop/Todo/app-mock-debug.apk'))
+        desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__),'/Users/leehanmo/Desktop/todo/app-mock-debug.apk'))
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
 
@@ -84,14 +84,19 @@ class Todo(unittest.TestCase):
             checkbox = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/complete')
             checkbox.click()
 
+            lockScreenView = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/tasksContainer').click()
+            self.driver.swipe(12, 768, 559, 768, 1000)
+
+            button2 = self.driver.find_element_by_accessibility_id('Filter')
+            button2.click()
+
             # 메뉴 바 선택
             menubutton = self.driver.find_element_by_accessibility_id('More options')
             menubutton.click()
-
             #일정 삭제 버튼
             delete = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView')
             delete.click()
-
+            sleep(5)
 
 
 
