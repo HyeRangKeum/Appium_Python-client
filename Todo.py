@@ -28,7 +28,7 @@ class Todo(unittest.TestCase):
 
 
     def test_search_field(self):
-        number = 1
+        number = 2
         j=0
         i = 0
         while(i < number):
@@ -42,11 +42,11 @@ class Todo(unittest.TestCase):
 
                 titlename = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.EditText[1]')
                 titlename.click()
-                titlename.send_keys('todo todo')
+                titlename.send_keys('todotitle')
                 self.driver.hide_keyboard()
 
                 text = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/add_task_description')
-                text.send_keys('todo contents input test ')
+                text.send_keys('input_test ')
                 text.click()
 
                 self.driver.hide_keyboard()
@@ -66,11 +66,11 @@ class Todo(unittest.TestCase):
 
             titlename = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.EditText[1]')
             titlename.click()
-            titlename.send_keys('todo')
+            titlename.send_keys('todo_edit')
             self.driver.hide_keyboard ()
 
             text = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/add_task_description')
-            text.send_keys('todo')
+            text.send_keys('todo_edit')
             text.click()
             #일정수정완료
 
@@ -80,9 +80,6 @@ class Todo(unittest.TestCase):
             finishbutton.click()
             print('일정수정 완료')
 
-            #일정 체크박스 선택
-            checkbox = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/complete')
-            checkbox.click()
 
             lockScreenView = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/tasksContainer').click()
             self.driver.swipe(12, 768, 559, 768, 1000)
@@ -90,9 +87,16 @@ class Todo(unittest.TestCase):
             button2 = self.driver.find_element_by_accessibility_id('Filter')
             button2.click()
 
+            # 일정 체크박스 선택
+            checkbox = self.driver.find_element_by_id('com.example.android.architecture.blueprints.tododatabinding.mock:id/complete')
+            checkbox.click()
             # 메뉴 바 선택
             menubutton = self.driver.find_element_by_accessibility_id('More options')
             menubutton.click()
+            sleep(3)
+
+
+
             #일정 삭제 버튼
             delete = self.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView')
             delete.click()
